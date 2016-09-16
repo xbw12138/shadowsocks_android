@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-22.2.1_6cd7ea3efd64659b0aeff303bd0b17e1e9cb0f4b.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/support-annotations-22.2.1_7dc576d822710d0f75cbf158fedd058cdc2d97b7.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/libs/core-3.1.1-SNAPSHOT.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="5589d0e71fbbd91262d1aa6c8e153ff211ec9fe0">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/core-3.1.1-SNAPSHOT_a4ee110afeacbabc1a46dbea63c893fee9485cd2.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/libs/jg_filter_sdk_1.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ebfc3cde0309ff27e9568757784eefefc71407a2">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/jg_filter_sdk_1.1_91619af9414b6daef9aa68fee87a84d363d52c0b.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/libs/Xg_sdk_v2.46_20160602_1638.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="32985de9bccdafb52efeb6e1b55a25b45559f4c6">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/Xg_sdk_v2.46_20160602_1638_228966eca74f8f71d8c63ff2f059c4ee73e06d98.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/.gradle/caches/modules-2/files-2.1/org.bouncycastle/bcprov-jdk15on/1.52/88a941faf9819d371e3174b5ed56a3f3f7d73269/bcprov-jdk15on-1.52.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="88a941faf9819d371e3174b5ed56a3f3f7d73269">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/bcprov-jdk15on-1.52_9765e6b03dfd4d4971de3a81929f06612abb65c8.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/internal_impl-22.2.1_6f1df5e796dc5f028c24618088878e43346e875d.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/.gradle/caches/modules-2/files-2.1/com.googlecode.json-simple/json-simple/1.1.1/c9ad4a0850ab676c5c64461a05ca524cdfff59f1/json-simple-1.1.1.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c9ad4a0850ab676c5c64461a05ca524cdfff59f1">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/json-simple-1.1.1_54ef2d4b948e1acf3e3f5e685babddfa7bc8a791.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/libs/Msc.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="994d12017bc2c9ba570180cde5500689d134e6e6">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/Msc_40a5a4e0d895033110dd6e1fd391f39ee33cc67e.jar" />
+    </item>
+    <item
+        jar="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/libs/wup-1.0.0.E-SNAPSHOT.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="d5a0917f8418b3726f89ae120182dfb6b884740d">
+        <dex dex="/Users/xubowen/Downloads/shadowsocks-android-java-master/app/build/intermediates/pre-dexed/release/wup-1.0.0.E-SNAPSHOT_5215ebd3cda5f9c3a23e3a9c7f610731109022b4.jar" />
+    </item>
+
+</items>

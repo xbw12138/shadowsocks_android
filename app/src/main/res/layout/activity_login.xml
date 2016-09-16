@@ -1,0 +1,147 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#373447">
+
+    <ImageView
+        android:id="@+id/user_logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/userNameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/user_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/app_name"
+        android:textColor="#CEC9E7"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/accountLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userNameTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/login_user" />
+
+        <EditText
+            android:id="@+id/chat_login_username"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/login_user_name"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="#CEC9E7"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="240dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/accountLayout"
+        android:layout_centerHorizontal="true"
+        android:background="#CEC9E7" />
+
+    <LinearLayout
+        android:id="@+id/pwdLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/login_pwd" />
+
+        <EditText
+            android:id="@+id/chat_login_password"
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/login_password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="#CEC9E7"
+            android:textSize="16sp" />
+
+         <CheckBox
+                    android:id="@+id/chat_login_password_checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="5dp"
+                    android:button="@drawable/password_checkbox" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="240dp"
+        android:layout_height="1dp"
+        android:layout_below="@id/pwdLayout"
+        android:layout_centerHorizontal="true"
+        android:background="#CEC9E7" />
+
+    <Button
+        android:id="@+id/chat_login_signin_btn"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="#312E3F"
+        android:padding="10dp"
+        android:text="@string/login_sign_in"
+        android:textColor="#CEC9E7"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/chat_login_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/accountLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/chat_login_signin_btn"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:text="@string/login_go_sign_up"
+        android:textColor="#CEC9E7"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/chat_forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chat_login_signin_btn"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:background="@null"
+        android:text="@string/login_forget_password"
+        android:textColor="#CEC9E7"
+        android:textSize="14sp" />
+
+</RelativeLayout>

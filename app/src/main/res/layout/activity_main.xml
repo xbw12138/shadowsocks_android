@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:id="@+id/relayout"
+    tools:context="com.xbw.mvp.ui.MainActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/apk/com.xbw.mvp">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/every_title"></include>
+
+    <RelativeLayout
+        android:id="@+id/nonVideoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.cpr.VideoEnabledWebView
+                android:id="@+id/webView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/pb"
+            android:layout_width="fill_parent"
+            android:layout_height="4dip"
+            android:indeterminateOnly="false"
+            android:max="100"
+            android:progressDrawable="@drawable/progress_bar_states" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/videoLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- View that will be shown while the fullscreen video loads. For example you could include
+        a "Loading..." message. However, in this particular example this view is actually defined in
+        view_loading_video.xml and inflated programmatically in ExampleActivity.java. The reason for
+        this is to keep the main layout (this file) cleaner. -->
+        <!-- <View
+            android:id="@+id/videoLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible" /> -->
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/title"
+        android:layout_height="250dp"
+        android:background="#00ffffff">
+        <com.opendanmaku.DanmakuView
+            android:id="@+id/danmakuView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#00ffffff"
+            app:end_Y_offset="0.8"
+            app:max_row="8"
+            app:max_running_per_row="8"
+            app:pick_interval="400"
+            app:show_debug="false"
+            app:start_Y_offset="0.01" />
+    </FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="left|bottom"
+        android:background="#00ffffff"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left|bottom"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/navitts_record_normal" />
+    </FrameLayout>
+
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/multiple_actions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        fab:fab_addButtonColorNormal="#f0f0f0"
+        fab:fab_addButtonColorPressed="@color/white_pressed"
+        fab:fab_addButtonPlusIconColor="@color/half_black"
+        fab:fab_labelStyle="@style/menu_labels_style"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp">
+        <ImageView
+            android:id="@+id/action_a"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/yy"/>
+        <ImageView
+            android:id="@+id/action_b"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bi"/>
+        <ImageView
+            android:id="@+id/action_c"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/yh"/>
+        <ImageView
+            android:id="@+id/action_d"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/setting"/>
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/hh"
+        android:visibility="gone"></FrameLayout>
+
+</RelativeLayout>

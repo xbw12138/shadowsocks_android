@@ -15,8 +15,8 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_top_bar"
-        android:background="@color/top_bar_normal_bg"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/title_name"
@@ -25,7 +25,8 @@
             android:layout_centerInParent="true"
             android:text="冰糖MVP"
             android:textColor="#fff"
-            android:textSize="23sp" />
+            android:textSize="23sp"
+            android:visibility="gone" />
         <ToggleButton
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
@@ -40,7 +41,8 @@
             android:text=""
             android:textColor="#ffffff"
             android:textOff="关"
-            android:textOn="开" />
+            android:textOn="开"
+            android:visibility="gone" />
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -51,6 +53,14 @@
             android:layout_alignParentEnd="true"
             android:background="@drawable/cog4"
             android:visibility="gone" />
+
+        <SearchView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sv"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
     </RelativeLayout>
 

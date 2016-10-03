@@ -3,21 +3,91 @@
 <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
 <title>404</title>
 <link href="styles/style.css"				rel="stylesheet" type="text/css">
+    <link href="styles/suo.css"				rel="stylesheet" type="text/css">
 <link href="//fonts.lug.ustc.edu.cn/icon?family=Material+Icons" rel="stylesheet">
 <link href="asset/materialize/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 <link href="asset/materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
 </head>
 <body>
+<script src="js/zepto.min.js"></script>
+<script src="js/swipeSlide.min.js"></script>
+<script>
+$(function(){
+    // demo1
+    $('#slide1').swipeSlide();
+
+    // demo2
+    $('#slide2').swipeSlide({
+        autoSwipe : false,
+        continuousScroll:true,
+        lazyLoad : true
+    });
+
+    // demo3
+    $('#slide3').swipeSlide({
+        continuousScroll:true,
+        speed : 3000,
+        transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
+        firstCallback : function(i,sum,me){
+            me.find('.dot').children().first().addClass('cur');
+        },
+        callback : function(i,sum,me){
+            me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+        }
+    });
+});
+</script>
+<div class="slide" id="slide3">
+    <ul>
+        <li>
+            <a href="http://ecfun.cc/mvp/ad/adurl.php?id=1" target="_blank">
+                <img src="http://ecfun.cc/mvp/ad/adimg.php?id=1" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="http://ecfun.cc/mvp/ad/adurl.php?id=2" target="_blank">
+                <img src="http://ecfun.cc/mvp/ad/adimg.php?id=2" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="http://ecfun.cc/mvp/ad/adurl.php?id=3" target="_blank">
+                <img src="http://ecfun.cc/mvp/ad/adimg.php?id=3" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="http://ecfun.cc/mvp/ad/adurl.php?id=4" target="_blank">
+                <img src="http://ecfun.cc/mvp/ad/adimg.php?id=4" alt="">
+            </a>
+        </li>
+        <li>
+            <a href="http://ecfun.cc/mvp/ad/adurl.php?id=5" target="_blank">
+                <img src="http://ecfun.cc/mvp/ad/adimg.php?id=5" alt="">
+            </a>
+        </li>
+    </ul>
+    <div class="dot">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</div>
+
 <div class="content">
 	<center>
     	<img src="images/404.png" width="180" height="140">
     </center>
     <div class="welcome-text">
     	<h3>服务未正常开启</h3>
-        <p>如果没有进行配置，则点击右上角进行配置；如果已经配置，请直接点击左上角开启</p>    
+        <p>请点击'+'，开启代理；如果依旧无法打开，请检查流量是否有剩余。</p>
     </div>
     
+</div>
+
+<div style="left:0;height:120px;line-height:120px;width:100%;position:fixed;bottom:0%;font-size:30px;background:url(http://ecfun.cc:81/ad/adimg.php?id=6) no-repeat center;text-align:center">
+    <a href="http://ecfun.cc/mvp/ad/adurl.php?id=6" style="color:#FFF" target="_blank">惊喜不停，用力戳～</a>
 </div>
 </body>
 </html>

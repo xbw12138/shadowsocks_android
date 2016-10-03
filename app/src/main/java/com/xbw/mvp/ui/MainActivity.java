@@ -17,6 +17,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.InputType;
 import android.text.Layout;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -34,6 +35,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
+import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -72,7 +75,7 @@ import org.json.JSONObject;
 public class MainActivity extends Activity implements
         View.OnClickListener,
         OnCheckedChangeListener,
-        LocalVpnService.onStatusChangedListener {
+        LocalVpnService.onStatusChangedListener,SearchView.OnQueryTextListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String CONFIG_URL_KEY = "CONFIG_URL_KEY";
@@ -82,6 +85,7 @@ public class MainActivity extends Activity implements
     private static final String CONFIG_URL_KEYKeYong = "CONFIG_URL_KEYKeYong";
     private static final String CONFIG_URL_KEYLastTime = "CONFIG_URL_KEYLastTime";
     private ToggleButton switchProxy;
+    private ToggleButton danmuOpen;
     private Calendar mCalendar;
     private VideoEnabledWebView webView;
     private VideoEnabledWebChromeClient webChromeClient;
@@ -94,6 +98,7 @@ public class MainActivity extends Activity implements
     private ImageView b;
     private ImageView c;
     private ImageView d;
+    private ImageView e;
     private String danmucontent = "";
     // 语音听写对象
     private SpeechRecognizer mIat;
@@ -102,14 +107,12 @@ public class MainActivity extends Activity implements
     // 引擎类型
     private String mEngineType = SpeechConstant.TYPE_CLOUD;
     private Toast mToast;
-    float mPosX = 0;
-    float mPosY = 0;
-    float mCurPosX = 0;
-    float mCurPosY = 0;
     private String url="";
     private FloatingActionsMenu FAM;
     // 用HashMap存储听写结果
     private HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();
+    private static final int START_VPN_SERVICE_REQUEST_CODE = 1985;
+    //private SearchView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,13 +122,24 @@ public class MainActivity extends Activity implements
         getWindow().addFlags(
                 WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);// 沉浸式状态栏
         setContentView(R.layout.activity_main);
-        switchProxy = (ToggleButton) findViewById(R.id.switch1);
+        switchProxy = (ToggleButton) findViewById(R.id.switch2);
+        danmuOpen=(ToggleButton) findViewById(R.id.switch3);
         webView = (VideoEnabledWebView) findViewById(R.id.webView);
         FAM=(FloatingActionsMenu)findViewById(R.id.multiple_actions);
         a = (ImageView) findViewById(R.id.action_a);
         b = (ImageView) findViewById(R.id.action_b);
         c = (ImageView) findViewById(R.id.action_c);
         d = (ImageView) findViewById(R.id.action_d);
+        e = (ImageView) findViewById(R.id.action_e);
+        //sv = (SearchView) findViewById(R.id.sv);
+        // 设置该SearchView默认是否自动缩小为图标
+        //sv.setIconifiedByDefault(true);
+        // 为该SearchView组件设置事件监听器
+        //sv.setOnQueryTextListener(this);
+        // 设置该SearchView显示搜索按钮
+        //sv.setSubmitButtonEnabled(true);
+        // 设置该SearchView内默认显示的提示文本
+        //sv.setQueryHint("查找");
         switchProxy.setChecked(LocalVpnService.IsRunning);
         switchProxy.setOnCheckedChangeListener(this);
         findViewById(R.id.imageButton).setOnClickListener(this);
@@ -156,7 +170,6 @@ public class MainActivity extends Activity implements
                 R.color.holo_red_light);
 
         a.setOnClickListener(new android.view.View.OnClickListener()
-
                              {
                                  @Override
                                  public void onClick(View v) {
@@ -223,6 +236,17 @@ public class MainActivity extends Activity implements
                              }
 
         );
+        e.setOnClickListener(new android.view.View.OnClickListener()
+
+                             {
+                                 @Override
+                                 public void onClick(View v) {
+                                     FAM.collapse();
+                                     showURLDialog();
+                                 }
+                             }
+
+        );
         d.setOnClickListener(new android.view.View.OnClickListener()
 
                              {
@@ -255,6 +279,21 @@ public class MainActivity extends Activity implements
                              }
 
         );
+
+        danmuOpen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    mDanmakuView.show();
+                    mDanmakuView.setVisibility(View.VISIBLE);
+                    Toast.makeText(MainActivity.this,"弹幕开",8000).show();
+                } else {
+                    mDanmakuView.hide();
+                    mDanmakuView.setVisibility(View.GONE);
+                    Toast.makeText(MainActivity.this,"弹幕关",8000).show();
+                }
+            }
+        });
 
     }
 
@@ -439,7 +478,7 @@ public class MainActivity extends Activity implements
         onLogReceived(status);
         if (isRunning) {
             url="";
-            webView.loadUrl("http://m.youtube.com");
+            webView.loadUrl("http://www.google.com");
         } else {
             url="file:///android_asset/wechat/index.html";
             webView.loadUrl(url);
@@ -449,6 +488,7 @@ public class MainActivity extends Activity implements
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        FAM.collapse();
         if (LocalVpnService.IsRunning != isChecked) {
             switchProxy.setEnabled(false);
             if (isChecked) {
@@ -456,7 +496,7 @@ public class MainActivity extends Activity implements
                 if (intent == null) {
                     startVPNService();
                 } else {
-                    startActivityForResult(intent, 1001);
+                    startActivityForResult(intent, START_VPN_SERVICE_REQUEST_CODE);
                 }
             } else {
                 LocalVpnService.IsRunning = false;
@@ -485,6 +525,16 @@ public class MainActivity extends Activity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == START_VPN_SERVICE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                startVPNService();
+            } else {
+                switchProxy.setChecked(false);
+                switchProxy.setEnabled(true);
+                onLogReceived("canceled.");
+            }
+            return;
+        }
         if (resultCode == 1001) {
             String result_value = intent.getStringExtra("describe");
             if (isValidUrl(result_value)) {
@@ -503,6 +553,35 @@ public class MainActivity extends Activity implements
         return true;
     }
 
+    public void showURLDialog(){
+        final EditText editText = new EditText(this);
+        editText.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+        editText.setHint(getString(R.string.config_url_a));
+        editText.setText("http://");
+        editText.setSelection(editText.getText().length());
+        new AlertDialog.Builder(this)
+                .setTitle("网址")
+                .setView(editText)
+                .setPositiveButton(R.string.btn_ok, new android.content.DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (editText.getText() == null) {
+                            return;
+                        }
+                        String Url = editText.getText().toString().trim();
+                        url="";
+                        webView.loadUrl(Url);
+                        //if (isValidUrl(ProxyUrl)) {
+                        //    setProxyUrl(ProxyUrl);
+                        //} else {
+                        //    Toast.makeText(MainActivity.this, R.string.err_invalid_url, Toast.LENGTH_SHORT).show();
+
+                        //}
+                    }
+                })
+                .setNegativeButton(R.string.btn_cancel, null)
+                .show();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -522,6 +601,11 @@ public class MainActivity extends Activity implements
                 url="";
                 webView.loadUrl("http://www.google.com");
                 return true;
+            case R.id.menu_item_zidingyi:
+                //url="";
+                //webView.loadUrl("http://www.google.com");
+                showURLDialog();
+                return true;
             case R.id.menu_item_about:
                 new AlertDialog.Builder(this)
                         .setTitle(getString(R.string.app_name) + getVersionName())
@@ -530,7 +614,9 @@ public class MainActivity extends Activity implements
                         .setNegativeButton(R.string.btn_more, new android.content.DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://v.ecfun.cc")));
+                                //startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://v.ecfun.cc")));
+                                url="";
+                                webView.loadUrl("https://ecfun.cc/mvp");
                             }
                         })
                         .show();
@@ -812,8 +898,8 @@ public class MainActivity extends Activity implements
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (webView.canGoBack()&&!url.equals("file:///android_asset/wechat/index.html")) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {//&&!url.equals("file:///android_asset/wechat/index.html")
+            if (webView.canGoBack()) {
                 webView.goBack();
                 return true;
             } else if(LocalVpnService.IsRunning){
@@ -824,5 +910,29 @@ public class MainActivity extends Activity implements
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+
+    // 用户输入字符时激发该方法
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (TextUtils.isEmpty(newText)) {
+            // 清除ListView的过滤
+            //lv.clearTextFilter();
+        } else {
+            // 使用用户输入的内容对ListView的列表项进行过滤
+            //lv.setFilterText(newText);
+        }
+        return true;
+    }
+
+    // 单击搜索按钮时激发该方法
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        // 实际应用中应该在该方法内执行实际查询
+        // 此处仅使用Toast显示用户输入的查询内容
+        Toast.makeText(this, "您的选择是:" + query, Toast.LENGTH_SHORT).show();
+        return false;
     }
 }

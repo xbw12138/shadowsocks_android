@@ -19,6 +19,7 @@
     <string name="exit_confirm_info">这将会断开VPN连接，确定要退出吗？</string>
     <string name="err_invalid_url">无效的配置地址</string>
     <string name="config_url_hint">ss://method:password@host:port</string>
+    <string name="config_url_a">输入网址</string>
     <string name="top_hint">将条形码或二维码置于取景框内系统会自动扫描</string>
     <string name="bottom_hint">建议与镜头保持10CM距离，尽量避免逆光和阴影</string>
     <string name="msg_camera_framework_bug">抱歉，Android相机出现问题。您可能需要重启设备。</string>
@@ -34,7 +35,7 @@
     <string name="menu_item_facebook">facebook</string>
     <string name="menu_item_twitter">twitter</string>
     <string name="menu_item_google">google</string>
-
+    <string name="menu_item_zidingyi">输入网址</string>
 
 
 
